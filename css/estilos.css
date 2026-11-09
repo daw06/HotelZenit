@@ -1,0 +1,68 @@
+:root { --azul: #14304d; --dorado: #b8935a; --lado: max(1.5rem, calc((100% - 1140px) / 2)); }
+.bg-azul { background-color: var(--azul); }
+.text-azul { color: var(--azul); }
+.text-dorado { color: var(--dorado); }
+
+body { background: #e9e6df; }
+.app { min-height: 100vh; }
+
+/* Botones */
+.btn-zn { --bs-btn-color: #fff; --bs-btn-bg: var(--dorado); --bs-btn-border-color: var(--dorado);
+          --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #a37f49; --bs-btn-hover-border-color: #a37f49; }
+.btn-zn-outline { --bs-btn-color: var(--dorado); --bs-btn-border-color: var(--dorado);
+          --bs-btn-hover-color: #fff; --bs-btn-hover-bg: var(--dorado); --bs-btn-hover-border-color: var(--dorado); }
+
+/* Imágenes (el alto se adapta al ancho de pantalla) */
+.foto { height: clamp(220px, 28vw, 340px); object-fit: cover; }
+.foto-card, .lista-cards .card-img-top { height: 220px; object-fit: cover; }
+
+/* Estructura: fondo a todo el ancho y contenido centrado a 1140px */
+.pantalla { min-height: 100vh; display: flex; flex-direction: column; }
+.pantalla > footer { margin-top: auto; }
+.pantalla > :is(header, nav, section, footer, .confirmada) {
+  padding-left: var(--lado) !important;
+  padding-right: var(--lado) !important;
+}
+
+/* Menú de la cabecera en escritorio */
+.nav-escritorio a { color: #fff; text-decoration: none; }
+.nav-escritorio a:hover { color: var(--dorado); }
+
+/* Portada */
+.hero { min-height: clamp(414px, 40vw, 560px); }
+.hero h1 { font-size: clamp(1.9rem, 4.5vw, 3.25rem); }
+.hero p { max-width: 40rem; }
+
+/* Tarjetas: las columnas se ajustan solas según el ancho */
+.lista-cards { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.lista-cards.lista-2 { grid-template-columns: repeat(auto-fit, minmax(min(450px, 100%), 1fr)); }
+.lista-cards > :is(h1, h2) { grid-column: 1 / -1; }
+.lista-cards .card-body { display: flex; flex-direction: column; }
+.lista-cards .card-text { flex-grow: 1; }
+
+/* Reserva */
+.reserva-grid { display: grid; gap: 1rem; }
+.form-grid { display: grid; gap: 0 1rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.form-grid > :is(h2, .form-check, .btn) { grid-column: 1 / -1; }
+
+/* Menú y reserva confirmada */
+.menu-wrap > * { width: 100%; max-width: 720px; margin: 0 auto; }
+.confirmada { min-height: calc(100vh - 80px); }
+.confirmada > .w-100 { max-width: 420px; }
+
+/* Tablet y escritorio */
+@media (min-width: 768px) {
+  .w-md-auto { width: auto !important; }
+  .hero .btn { align-self: flex-start; }
+}
+@media (min-width: 992px) {
+  .reserva-grid {
+    grid-template-columns: 1fr 1.6fr;
+    grid-template-areas: "resumen form" "contacto form";
+    grid-template-rows: auto 1fr;
+    align-items: start;
+  }
+  .r-resumen { grid-area: resumen; }
+  .r-form { grid-area: form; }
+  .r-contacto { grid-area: contacto; }
+}
